@@ -3,3 +3,15 @@ press "a" build a new file
 press "A" build a new forder
 
 press "d" operate delete
+
+git checkout main          # 切换到主分支
+git pull origin main       # 更新主分支到最新状态
+git merge feature/branch   # 合并指定分支到主分支
+git push origin main       # 将合并结果推送到远程
+
+git checkout feature/branch  # 切换到特性分支
+git rebase main              # 将特性分支变基到主分支
+git checkout main            # 切换回主分支
+git merge feature/branch     # 快进合并（Fast-forward）
+git push origin main         # 推送到远程
+
