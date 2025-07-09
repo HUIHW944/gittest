@@ -20,4 +20,3 @@ git commit --amend --no-edit #已提交后，又对文件进行修改，可通�
 
 git restore staged --hello #添加到暂存区后，撤销修改
 git restore hello = git checkout -- hello #未添加到暂存区，撤销修改
-
