@@ -1,0 +1,23 @@
+press "a" build a new file
+
+press "A" build a new forder
+
+press "d" operate delete
+
+git checkout main          
+git pull origin main       
+git merge feature/branch   
+git push origin main       
+
+git checkout feature/branch  
+git rebase main              
+git checkout main            
+git merge feature/branch     
+git push origin main         
+<<<<<<< HEAD
+
+test commit --amend
+git commit --amend --no-edit #已提交后，又对文件进行修改，可通过该条指令将修改后的文档提交，并与提交后的文档进行结合
+
+git restore staged --hello #添加到暂存区后，撤销修改
+git restore hello = git checkout -- hello #未添加到暂存区，撤销修改
