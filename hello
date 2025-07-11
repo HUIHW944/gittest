@@ -23,3 +23,5 @@ git restore staged --hello #添加到暂存区后，撤销修改
 git restore hello = git checkout -- hello #未添加到暂存区，撤销修改
 
 git revert #撤销提交，但不删除log记录，，重新生成新的提交
+
+git rebase -i HEAD~2 #变基
