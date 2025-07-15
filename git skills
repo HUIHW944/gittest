@@ -1,8 +1,8 @@
-press "a" build a new file
+in explorer press "a" build a new file
 
-press "A" build a new forder
+in explore rpress "A" build a new forder
 
-press "d" operate delete
+in explorer press "d" operate delete
 
 git checkout main          
 git pull origin main       
@@ -13,7 +13,7 @@ git checkout feature branch
 git rebase main              
 git checkout main            
 git merge feature/branch     
-git push origin main         
+git push origin main        
 
 git test commit --amend
 git commit --amend --no-edit #已提交后，又对文件进行修改，可通过该条指令将修改后的文档提交，并与提交后的文档进行结合
