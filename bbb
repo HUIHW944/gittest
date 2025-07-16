@@ -1,1 +1,5 @@
 test git rebase
+<<<<<<< HEAD
+=======
+test git merge --squash
+>>>>>>> cf59a75 (test merge --squash)
