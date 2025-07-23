@@ -144,7 +144,9 @@ int main() {
     printf("%d %d %d\n",(*p1)，(*(p1+1))，(*(p1+2)));
     return 0;
 }
+*/
 
+/*
 int func(int *a, int *b) {
     if (!a || !b) {
     return -1;
@@ -160,15 +162,38 @@ void main(void) {
     printf("%d, %d\n", ret1, ret2);
 }
 */
-int add_int(int a, int b) {
-    return a + b;
-}
-double add_double(double a, double b) {
-    return a + b;
-}
-int main() {
-    int int_result = add_int(1, 2);
-    float float_result = add_double(1.5, 2.5); 
-    printf("results are %d and %f\n", int_result, float_result);
+
+/*
+   int add_int(int a, int b) {
+   return a + b;
+   }
+   double add_double(double a, double b) {
+   return a + b;
+   }
+   int main() {
+   int int_result = add_int(1, 2);
+   float float_result = add_double(1.5, 2.5); 
+   printf("results are %d and %f\n", int_result, float_result);
+   return 0;
+   }
+ */
+
+int global_inited = 10;/* 全局初始化变量 */   
+int global_uninited;/* 全局未初始化变量 */  
+int main(void) {
+    int local_car = 20;  //局部变量 
+    char *str = "Hello"; //字符串变量
+    static int static_var = 30; //静态变量
+    int *heap_var = (int *)malloc(sizeof(int)); //动态分配内存
+
+    printf("address of code: %p\n", main);//代码段（只读）
+    printf("address of str: %p\n", str);//只读数据段
+    printf("address of global_inited: %p\n", (void *)&global_inited);//全局数据初始化段（DATA）
+    printf("address of static_var: %p\n", (void *)&static_var);
+    printf("address of global_uninited: %p\n", (void *)&global_uninited);//全局数据未初始化段（BBS）
+
+    printf("address of heap_var: %p\n", (void *)heap_var);//堆空间，往上生长
+    printf("address of local_var: %p\n", (void *)&local_car);//栈空间，往下生长
+    free(heap_var); //释放动态分配的内存
     return 0;
 }
