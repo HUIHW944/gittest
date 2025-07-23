@@ -26,5 +26,3 @@ int main(void) {
     counter();   /* 输出 3 */
     return 0;
 }
-
-123
