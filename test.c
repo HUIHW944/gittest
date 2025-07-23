@@ -163,12 +163,12 @@ void main(void) {
 int add_int(int a, int b) {
     return a + b;
 }
-double add_float(double a, double b) {
+double add_double(double a, double b) {
     return a + b;
 }
 int main() {
     int int_result = add_int(1, 2);
-    float float_result = add_float(1.5, 2.5); 
-    printf("result are %d and %f\n", int_result, float_result);
+    float float_result = add_double(1.5, 2.5); 
+    printf("results are %d and %f\n", int_result, float_result);
     return 0;
 }
