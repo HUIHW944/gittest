@@ -14,12 +14,12 @@ int main(void) {
 #define TOUCH_PANEL_DRIVER 1
 #ifdef TOUCH_PANEL_DRIVER
     void tp_driver(void) {
-    printf("tp_driver_call\n");
+        printf("tp_driver_call\n");
     }
 #endif
-int TP_DRIVER(void){
+int TP_DRIVER(void) {
     #ifdef TOUCH_PANEL_DRIVER
-    tp_driver();
+        tp_driver();
     #endif
     return 0;
 }
@@ -27,7 +27,7 @@ int TP_DRIVER(void){
 #define FUNc(a,b) do{((a)=(a)*(b));a++;} while()
 int a = 10;
 int MUITIPLICATION(void) {
-    FUNC(a, 10) ;
+    FUNC(a, 10);
     printf("a is %d\n",a);
     return 0;
 }
@@ -50,7 +50,7 @@ enum ghi {
     g = 100,
     H = 200,
     I = 300
-}
+};
 
 //数据类型别名
 typedef struct ABC {
@@ -58,16 +58,15 @@ typedef struct ABC {
     char b;
     float c;
 } ABC_t;
-
 typedef int len_t;
 typedef unsigned char unit8_t;
 typedef void (*func)(void);//函数指针类型
+
 int main(void) {
     c.a = 10;
     c.b = 'b';
     c.c = 2.5;
     printf("a is %d,b is %c,c is %f\n",c.a,c.b,c.c);
-
     int z = 10;
     printf("z is %d,addr of z is %p\n"， Z, &z);
 
@@ -93,20 +92,17 @@ int main(void) {
 
 static int a =10;//在别的文件中无法extern，只作用当前文件
 int func1(void) {
-    static int b = 10;
-    //执行完不销毁
+    static int b = 10;//执行完不销毁
     b++;
     return b;
 }
 
 int func2(void) {
-    int c = 20;
-    //执行完销毁
+    int c = 20;//执行完销毁
     c++;
     return c;
 }
-int
-     main(void) {
+int main(void) {
     const int z = 10;
     int const x = 20;
     //z=20//无法修改
@@ -114,6 +110,7 @@ int
     printf("a = %d,b = %d,c = %d\n", a, func1(), func2());
     printf("z = %d,x = %d\n", Z， x);
 }
+
 int main() {
     for (int i = θ; i < 5; i++)
     if (1 == i) {
@@ -148,9 +145,10 @@ int main() {
     return 0;
 }
 
-int func(int *a, int *b)
-    if (!a ll !b) {
+int func(int *a, int *b) {
+    if (!a || !b) {
     return -1;
+    }
     *a = 100 * 2;
     *b = 200 * 2;
     return 0;
