@@ -189,10 +189,12 @@ void main(void) {
    static int static_local_inited = 30; //静态局部c初始化量
    static int static_local_uninited;//静态局部未初始化变量
    int *heap_var = (int *)malloc(sizeof(int)); //动态分配内存
-int global_inited = 10;/* 全局初始化变量 */   
-int global_uninited;/* 全局未初始化变量 */  
-static int static_global_inited = 10;/* 静态全局初始化变量 */   
-static int static_global_uninited;/* 静态全局未初始化变量 */  
+*/
+/*
+int global_inited = 10;// 全局初始化变量  
+int global_uninited;//全局未初始化变量  
+static int static_global_inited = 10;// 静态全局初始化变量   
+static int static_global_uninited;// 静态全局未初始化变量   
 int main(void) {
     int local_var = 20;  //局部变量 
     char *str = "Hello"; //字符串变量
@@ -231,3 +233,36 @@ int main(void) {
    printf("the p1+1 is %x, %x, %x, %x\n", *p1, *(p1+1), p1[1], *p1+1);
    printf("the p2+1 is %x, %x, %x, %x\n", *p2, *(p2+1), p2[1], *p2+1);
    } */
+
+/* void func(void) {
+   printf("hello func\n");
+   }
+   int main(void) {
+   printf("func addr %p\n",func);
+   void (*p)(void)  = func;// try to access
+   p();//=func();
+   int *p1 = (int *)func;//try to read
+   printf("func addr %d\n",*p1); 
+ *p1 = 1;//try to write
+ printf("%s addr: %p\n", "hello", "hello");
+//const char *s = "hallo";//=char *s
+//s[1] = 'e';
+return 0;
+} */
+int a = 10;
+int b;
+int func(void) {
+    static int d = 10;
+    b++;
+    return ++d;
+}
+int main(void) {
+    static int c;
+    printf("%p, %p, %p\n",&a, &b, &c);
+    a = 20;
+    b = 30;
+    c = 40;
+    printf("a = %d,b = %d,c = %d\n", a, b, c);//data bss 可读可写
+    printf("b = %d,d = %d,d = %d\n", b, func(), func());
+    return 0; 
+}
