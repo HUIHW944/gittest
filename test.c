@@ -181,7 +181,7 @@ void main(void) {
 int global_inited = 10;/* 全局初始化变量 */   
 int global_uninited;/* 全局未初始化变量 */  
 int main(void) {
-    int local_car = 20;  //局部变量 
+    int local_var = 20;  //局部变量 
     char *str = "Hello"; //字符串变量
     static int static_var = 30; //静态变量
     int *heap_var = (int *)malloc(sizeof(int)); //动态分配内存
@@ -193,7 +193,7 @@ int main(void) {
     printf("address of global_uninited: %p\n", (void *)&global_uninited);//全局数据未初始化段（BBS）
 
     printf("address of heap_var: %p\n", (void *)heap_var);//堆空间，往上生长
-    printf("address of local_var: %p\n", (void *)&local_car);//栈空间，往下生长
+    printf("address of local_var: %p\n", (void *)&local_var);//栈空间，往下生长
     free(heap_var); //释放动态分配的内存
     return 0;
 }
