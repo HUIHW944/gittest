@@ -249,13 +249,37 @@ int main(void) {
 //s[1] = 'e';
 return 0;
 } */
+
+
 int a = 10;
 int b;
-int func(void) {
+
+int func1(void) {
     static int d = 10;
     b++;
     return ++d;
 }
+
+int func2(void) {
+    int *heap_var = (int *)malloc(sizeof(int));
+    if (NULL == *heap_var) {
+      return -1;
+    }
+    *heap_var = 10;
+    printf("heap addr = %p,heap_var = %d\n", heap_var, *heap_var);
+    free(heap_var);
+}
+
+char *func3(void) {
+    char *s = "hello";
+    char buff1[] = "hello";
+    static char buff2[] = "hello";
+    printf("func3 :%s\n",s);
+    printf("func3 :%s\n",buff1);
+    printf("func3 :%s\n",buff2);
+    return buff2;
+}
+
 int main(void) {
     static int c;
     printf("%p, %p, %p\n",&a, &b, &c);
@@ -263,6 +287,11 @@ int main(void) {
     b = 30;
     c = 40;
     printf("a = %d,b = %d,c = %d\n", a, b, c);//data bss 可读可写
-    printf("b = %d,d = %d,d = %d\n", b, func(), func());
+    printf("b = %d,d = %d,d = %d\n", b, func1(), func1());
+
+    func2();
+
+    char *p = func3();
+    printf("main : %s\n",p);
     return 0; 
 }
