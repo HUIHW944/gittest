@@ -180,20 +180,24 @@ void main(void) {
 
 int global_inited = 10;/* 全局初始化变量 */   
 int global_uninited;/* 全局未初始化变量 */  
+static int static_global_inited = 10;/* 静态全局初始化变量 */   
+static int static_global_uninited;/* 静态全局未初始化变量 */  
 int main(void) {
     int local_var = 20;  //局部变量 
     char *str = "Hello"; //字符串变量
-    static int inited_static_var = 30; //静态局部变量，初始化
-    static int uninited_static_var;//静态局部变量，未初始化
+    static int static_local_inited = 30; //静态局部c初始化量
+    static int static_local_uninited;//静态局部未初始化变量
     int *heap_var = (int *)malloc(sizeof(int)); //动态分配内存
 
     printf("address of code:             %p\n", main);//代码段（只读）
     printf("address of str:              %p\n", str);//只读数据段
 
     printf("address of global_inited:    %p\n", (void *)&global_inited);//全局数据初始化段（DATA）
-    printf("address of static_var:       %p\n", (void *)&inited_static_var);//DATA
+    printf("address of static_var:       %p\n", (void *)&static_global_inited);//DATA
+    printf("address of static_var:       %p\n", (void *)&static_local_inited);//DATA
     printf("address of global_uninited:  %p\n", (void *)&global_uninited);//全局数据未初始化段（BBS）
-    printf("address of static_var:       %p\n", (void *)&uninited_static_var);//BBS
+    printf("address of static_var:       %p\n", (void *)&static_global_uninited);//BBS
+    printf("address of static_var:       %p\n", (void *)&static_local_uninited);//BBS
 
     printf("address of heap_var:         %p\n", (void *)heap_var);//堆空间，往上生长
     printf("address of local_var:        %p\n", (void *)&local_var);//栈空间，往下生长
