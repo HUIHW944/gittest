@@ -178,16 +178,17 @@ void main(void) {
    }
  */
 
-int global_inited = 10;//全局初始化变量    
-int global_uninited;// 全局未初始化变量   
-static int static_global_inited = 10;// 静态全局初始化变量   
-static int static_global_uninited;// 静态全局未初始化变量   
-int main(void) {
-    int local_var = 20;  //局部变量 
-    char *str = "Hello"; //字符串变量
-    static int static_local_inited = 30; //静态局部c初始化量
-    static int static_local_uninited;//静态局部未初始化变量
-    int *heap_var = (int *)malloc(sizeof(int)); //动态分配内存
+/*
+   int global_inited = 10;//全局初始化变量    
+   int global_uninited;// 全局未初始化变量   
+   static int static_global_inited = 10;// 静态全局初始化变量   
+   static int static_global_uninited;// 静态全局未初始化变量   
+   int main(void) {
+   int local_var = 20;  //局部变量 
+   char *str = "Hello"; //字符串变量
+   static int static_local_inited = 30; //静态局部c初始化量
+   static int static_local_uninited;//静态局部未初始化变量
+   int *heap_var = (int *)malloc(sizeof(int)); //动态分配内存
 
     printf("address of code:                       %p\n", main);//代码段（只读）
     printf("address of str:                        %p\n", str);//只读数据段
@@ -204,3 +205,13 @@ int main(void) {
     free(heap_var); //释放动态分配的内存
     return 0;
 }
+   */
+
+/* int main () {
+   int a = 0x12345678;
+   int b = 0x10203040;
+   int *p1 = &a;//整个地址打印
+   char *p2 = (char *)&b;//从地址的低位开始，一位一位打印
+   printf("the p1+1 is %x, %x, %x, %x\n", *p1, *(p1+1), p1[1], *p1+1);
+   printf("the p2+1 is %x, %x, %x, %x\n", *p2, *(p2+1), p2[1], *p2+1);
+   } */
