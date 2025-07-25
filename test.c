@@ -250,7 +250,7 @@ int main(void) {
 return 0;
 } */
 
-
+/*
 int a = 10;
 int b;
 
@@ -294,4 +294,28 @@ int main(void) {
     char *p = func3();
     printf("main : %s\n",p);
     return 0; 
+}*/
+
+struct abc {
+    int a;
+    int b;
+    char c;
+}data;
+int arr[3] = {1,2,3};
+int main(void) {
+    data.a = 1;
+    data.b = 2;
+    data.c = 3;
+    printf("size of struct abc = %ld\n",sizeof(struct abc));
+    struct abc *p = &data;
+    printf("a=%d,b=%d,c=%d\n",p->a,p->b,p->c);
+    int *p1 = (int *)&data;
+    printf("struct p1[0] = %d\n", p1[0]);
+    printf("struct p1[1] = %d\n", p1[1]);
+    printf("struct p1[2] = %d\n", p1[2]);
+    int *p2 = arr;
+    printf("struct p2[0] = %d\n", p2[0]);
+    printf("struct p2[1] = %d\n", p2[1]);
+    printf("struct p2[2] = %d\n", p2[2]);
+    return 0;
 }
