@@ -296,26 +296,51 @@ int main(void) {
     return 0; 
 }*/
 
+/*
+   struct abc {
+   int a;
+   int b;
+   char c;
+   }data;
+   int arr[3] = {4,5,6};
+   int main(void) {
+   data.a = 1;
+   data.b = 2;
+   data.c = 3;
+   printf("size of struct abc = %lld\n",sizeof(struct abc));
+   struct abc *p = &data;
+   printf("a=%d,b=%d,c=%d\n",p->a,p->b,p->c);
+   int *p1 = (int *)&data;
+   printf("struct p1[0] = %d\n", p1[0]);
+   printf("struct p1[1] = %d\n", p1[1]);
+   printf("struct p1[2] = %d\n", p1[2]);
+   int *p2 = arr;
+   printf("struct p2[0] = %d\n", p2[0]);
+   printf("struct p2[1] = %d\n", p2[1]);
+   printf("struct p2[2] = %d\n", p2[2]);
+   return 0;
+   }
+   */
+
+
 struct abc {
-    int a;
-    int b;
-    char c;
+   int a;
+   int b;
+   char c;
 }data;
-int arr[3] = {1,2,3};
+void find_struct(int *member) {
+    unsigned long offset = 0;
+    struct abc* p = NULL;
+    offset = (uintptr_t)&((struct abc*)0)->a;
+    printf("member offset is %ld\n",offset);
+    p = (struct abc*)((char *)member - offset);
+    printf("a=%d,b=%d,c=%d\n",p->a,p->b,p->c);
+}
 int main(void) {
     data.a = 1;
     data.b = 2;
     data.c = 3;
-    printf("size of struct abc = %ld\n",sizeof(struct abc));
     struct abc *p = &data;
     printf("a=%d,b=%d,c=%d\n",p->a,p->b,p->c);
-    int *p1 = (int *)&data;
-    printf("struct p1[0] = %d\n", p1[0]);
-    printf("struct p1[1] = %d\n", p1[1]);
-    printf("struct p1[2] = %d\n", p1[2]);
-    int *p2 = arr;
-    printf("struct p2[0] = %d\n", p2[0]);
-    printf("struct p2[1] = %d\n", p2[1]);
-    printf("struct p2[2] = %d\n", p2[2]);
-    return 0;
+    find_struct(&data.a);
 }
