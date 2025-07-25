@@ -346,6 +346,7 @@ int main(void) {
    find_struct(&data.a);
    }
    */
+/*
 int main(void) {
     int array[] = {1,2,3,4,5};
     int *p = array;//int *p = &array[0]
@@ -353,5 +354,18 @@ int main(void) {
     printf("*p = %d \n",*p);
     p++;//p[3]
     printf("*p = %d \n",*p);
+    return 0;
+}
+*/
+
+int main(void) {
+    char *arr[3] = {"welcome","to","SW"};
+    char **s = arr;
+    printf("%s:%p\n",s[0],s[0]);
+    printf("%s:%p\n",s[1],s[1]);
+    printf("%s:%p\n",s[2],s[2]);
+    printf("&s[0]:%p\n",&s[0]);
+    printf("&s[1]:%p\n",&s[1]);
+    printf("&s[2]:%p\n",&s[2]);
     return 0;
 }
