@@ -369,4 +369,3 @@ int main(void) {
     printf("&s[2]:%p\n",&s[2]);
     return 0;
 }
-
