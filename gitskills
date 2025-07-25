@@ -24,3 +24,6 @@ git restore hello = git checkout -- hello #未添加到暂存区，撤销修改
 git revert #撤销提交，但不删除log记录，重新成新的提交
 
 git rebase -i HEAD~2 #变基
+
+git merge dev//合并dev到当前分支
+git rebase main//当前分支变基到main
