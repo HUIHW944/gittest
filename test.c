@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <string.h>
 /*
 int main(void) {
     int **pVar =(int **)(&pVar);
@@ -323,24 +323,35 @@ int main(void) {
    */
 
 
-struct abc {
+/*
+   struct abc {
    int a;
    int b;
    char c;
-}data;
-void find_struct(int *member) {
-    unsigned long offset = 0;
-    struct abc* p = NULL;
-    offset = (uintptr_t)&((struct abc*)0)->a;
-    printf("member offset is %ld\n",offset);
-    p = (struct abc*)((char *)member - offset);
-    printf("a=%d,b=%d,c=%d\n",p->a,p->b,p->c);
-}
+   }data;
+   void find_struct(int *member) {
+   unsigned long offset = 0;
+   struct abc* p = NULL;
+   offset = (uintptr_t)&((struct abc*)0)->a;
+   printf("member offset is %ld\n",offset);
+   p = (struct abc*)((char *)member - offset);
+   printf("a=%d,b=%d,c=%d\n",p->a,p->b,p->c);
+   }
+   int main(void) {
+   data.a = 1;
+   data.b = 2;
+   data.c = 3;
+   struct abc *p = &data;
+   printf("a=%d,b=%d,c=%d\n",p->a,p->b,p->c);
+   find_struct(&data.a);
+   }
+   */
 int main(void) {
-    data.a = 1;
-    data.b = 2;
-    data.c = 3;
-    struct abc *p = &data;
-    printf("a=%d,b=%d,c=%d\n",p->a,p->b,p->c);
-    find_struct(&data.a);
+    int array[] = {1,2,3,4,5};
+    int *p = array;//int *p = &array[0]
+    p = p+2;//p[2]
+    printf("*p = %d \n",*p);
+    p++;//p[3]
+    printf("*p = %d \n",*p);
+    return 0;
 }
