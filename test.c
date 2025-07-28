@@ -358,14 +358,41 @@ int main(void) {
 }
 */
 
+/*
+   int main(void) {
+   const char *arr[3] = {"welcome","to","SW"};
+   const char **s = arr;
+   printf("%s:%p\n",s[0],s[0]);
+   printf("%s:%p\n",s[1],s[1]);
+   printf("%s:%p\n",s[2],s[2]);
+   printf("&s[0]:%p\n",&s[0]);
+   printf("&s[1]:%p\n",&s[1]);
+   printf("&s[2]:%p\n",&s[2]);
+   return 0;
+   }
+   */
+
+/* int main() {
+   int (*myshow)(const char *,...);
+   printf("hello\n");
+   printf("the printf is %p\n",printf);
+   myshow = printf;
+   myshow("====\n");
+   printf("the myshow is %p\n",myshow);
+   return 0;
+   } */
+
+int add(int a, int b) { 
+    return a + b; 
+}
+int sub(int a, int b) { 
+    return a - b; 
+}
+void process(int (*func)(int, int), int a, int b) {
+    int result = func(a, b);  // 调用传入的函数
+    printf("Result: %d\n", result);
+}
 int main(void) {
-    char *arr[3] = {"welcome","to","SW"};
-    char **s = arr;
-    printf("%s:%p\n",s[0],s[0]);
-    printf("%s:%p\n",s[1],s[1]);
-    printf("%s:%p\n",s[2],s[2]);
-    printf("&s[0]:%p\n",&s[0]);
-    printf("&s[1]:%p\n",&s[1]);
-    printf("&s[2]:%p\n",&s[2]);
-    return 0;
+    process(add, 3, 4);
+    process(sub, 3, 4);
 }
