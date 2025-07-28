@@ -376,23 +376,25 @@ int main(void) {
    int (*myshow)(const char *,...);
    printf("hello\n");
    printf("the printf is %p\n",printf);
-   myshow = printf;
+   myshow = printf;//等价于myshow = (int (*)(const char *,xxx))printf_addr，需要注意地址为int，需要强转
    myshow("====\n");
    printf("the myshow is %p\n",myshow);
    return 0;
-   } */
+   } */ 
 
-int add(int a, int b) { 
-    return a + b; 
-}
-int sub(int a, int b) { 
-    return a - b; 
-}
-void process(int (*func)(int, int), int a, int b) {
-    int result = func(a, b);  // 调用传入的函数
-    printf("Result: %d\n", result);
-}
-int main(void) {
-    process(add, 3, 4);
-    process(sub, 3, 4);
-}
+/*
+   int add(int a, int b) { 
+   return a + b; 
+   }
+   int sub(int a, int b) { 
+   return a - b; 
+   }
+   void process(int (*func)(int, int), int a, int b) {
+   int result = func(a, b);  // 调用传入的函数
+   printf("Result: %d\n", result);
+   }
+   int main(void) {
+   process(add, 3, 4);
+   process(sub, 3, 4);
+   }
+   */
