@@ -1,0 +1,4 @@
+test
+test
+echo test > ccc //清除ccc内容，加入test
+echo test >> ccc //不改变ccc内容，加入test
