@@ -382,7 +382,7 @@ int main(void) {
    return 0;
    } */ 
 
-/*
+
    int add(int a, int b) { 
    return a + b; 
    }
@@ -390,11 +390,12 @@ int main(void) {
    return a - b; 
    }
    void process(int (*func)(int, int), int a, int b) {
-   int result = func(a, b);  // 调用传入的函数
+   int result = func(a, b);  
    printf("Result: %d\n", result);
    }
    int main(void) {
    process(add, 3, 4);
    process(sub, 3, 4);
    }
-   */
+   
+
