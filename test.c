@@ -397,5 +397,3 @@ int main(void) {
    process(add, 3, 4);
    process(sub, 3, 4);
    }
-   
-
