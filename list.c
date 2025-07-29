@@ -75,11 +75,11 @@ int main() {
     head = insertAtTail(head, 20);    // 10 -> 20 -> NULL
     head = insertAtHead(head, 5);     // 5 -> 10 -> 20 -> NULL
     // 遍历链表
-    printf("初始链表: ");
+    printf("original list: ");
     printList(head);  // 输出: 5 -> 10 -> 20 -> NULL
     // 删除节点
     head = deleteNode(head, 10);      // 5 -> 20 -> NULL
-    printf("删除10后的链表: ");
+    printf("list with deleter 10: ");
     printList(head);  // 输出: 5 -> 20 -> NULL
     // 释放内存
     freeList(head);
