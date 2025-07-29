@@ -383,17 +383,17 @@ int main(void) {
    } */ 
 
 
-   int add(int a, int b) { 
+int add(int a, int b) { 
    return a + b; 
-   }
-   int sub(int a, int b) { 
+}
+int sub(int a, int b) { 
    return a - b; 
-   }
-   void process(int (*func)(int, int), int a, int b) {
+}
+void process(int (*func)(int, int), int a, int b) {
    int result = func(a, b);  
    printf("Result: %d\n", result);
    }
-   int main(void) {
+int main(void) {
    process(add, 3, 4);
    process(sub, 3, 4);
-   }
+}

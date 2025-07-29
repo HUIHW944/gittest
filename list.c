@@ -1,11 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
+//list FIFO-first in first out
 
 // 定义链表节点结构
 struct Node {
     int data;           // 数据域（可根据需求改为其他类型）
     struct Node* next;  // 指向下一个节点的指针
 };
+
 struct Node* createNode(int data) {
     struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
     if (newNode == NULL) {
@@ -16,14 +18,17 @@ struct Node* createNode(int data) {
     newNode->next = NULL;  // 初始化为NULL
     return newNode;
 }
+
 struct Node* insertAtHead(struct Node* head, int data) {
     struct Node* newNode = createNode(data);
     newNode->next = head;  // 新节点指向原头节点
     return newNode;        // 返回新的头节点
 }
+
 struct Node* insertAtTail(struct Node* head, int data) {
     struct Node* newNode = createNode(data);
-    if (head == NULL) return newNode;  // 空链表直接返回新节点
+    if (head == NULL) 
+    return newNode;  // 空链表直接返回新节点
     
     struct Node* temp = head;
     while (temp->next != NULL) {
@@ -32,18 +37,16 @@ struct Node* insertAtTail(struct Node* head, int data) {
     temp->next = newNode;   // 插入到尾部
     return head;
 }
+
 struct Node* deleteNode(struct Node* head, int key) {
     struct Node* temp = head;
     struct Node* prev = NULL;
-
     // 找到要删除的节点
     while (temp != NULL && temp->data != key) {
         prev = temp;
         temp = temp->next;
     }
-
     if (temp == NULL) return head;  // 未找到目标节点
-
     if (prev == NULL) {
         head = temp->next;  // 删除头节点
     } else {
@@ -52,6 +55,7 @@ struct Node* deleteNode(struct Node* head, int key) {
     free(temp);  // 释放内存
     return head;
 }
+
 void printList(struct Node* head) {
     struct Node* temp = head;
     while (temp != NULL) {
@@ -60,6 +64,7 @@ void printList(struct Node* head) {
     }
     printf("NULL\n");
 }
+
 void freeList(struct Node* head) {
     struct Node* temp;
     while (head != NULL) {
@@ -68,6 +73,7 @@ void freeList(struct Node* head) {
         free(temp);
     }
 }
+
 int main() {
     struct Node* head = NULL;  
     // 插入节点
