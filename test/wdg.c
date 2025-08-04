@@ -1,80 +1,77 @@
-#include "FreeRTOS.h"
-#include "task.h"
-#include "timers.h"
 #include <stdio.h>
+#include <stdint.h>
 
-// 定义软件看门狗定时器句柄
-TimerHandle_t xWatchdogTimer;
+// 模拟定时器（用于实现软件看门狗）
+typedef struct {
+    uint32_t timeout;       // 超时时间（毫秒）
+    void (*callback)(void); // 超时回调函数
+    uint32_t count;         // 计时计数器
+} SoftWatchdog;
 
-// 软件看门狗定时器回调函数
-void vWatchdogTimerCallback(TimerHandle_t xTimer)
-{
-    // 这里可以执行更复杂的恢复操作，如复位系统等
-    // 简单示例，打印提示信息
-    printf("软件看门狗超时，系统可能出现异常！\n");
+// 全局看门狗实例
+SoftWatchdog g_watchdog;
+
+// 模拟系统复位函数
+void system_reset(void) {
+    printf("[System reset] try to get back to normal operation...\n");
+    // 实际硬件中会调用复位指令，如NVIC_SystemReset()
 }
 
-// 喂狗函数
-void feedWatchdog(void)
-{
-    // 重新启动软件看门狗定时器，重置计时
-    xTimerReset(xWatchdogTimer, 0);
+// 看门狗超时回调函数
+void watchdog_timeout_callback(void) {
+    printf("[Timeout Exception] did not feed the dog in time!\n");
+    
+    // 1. 记录故障信息（示例：打印当前状态）
+    printf("[Fault logging] timeout time counter value: %d\n", (int)g_watchdog.count);
+    
+    // 2. 尝试软件修复（示例：重启关键模块）
+    printf("[Try to recover] restart the communication module...\n");
+    
+    // 3. 若修复无效，触发系统复位
+    system_reset();
 }
 
-// 模拟应用任务，在任务中定期喂狗
-void vApplicationTask(void *pvParameters)
-{
-    (void)pvParameters;
-    while(1)
-    {
-        // 模拟执行一些任务
-        vTaskDelay(pdMS_TO_TICKS(500)); 
+// 初始化软件看门狗
+void watchdog_init(uint32_t timeout) {
+    g_watchdog.timeout = timeout;
+    g_watchdog.callback = watchdog_timeout_callback; // 绑定回调函数
+    g_watchdog.count = 0;
+    printf("watchdog initialization completes, timeout timeout: %dms\n", timeout);
+}
 
-        // 进行喂狗操作
-        feedWatchdog(); 
+// 喂狗操作（重置计数器）
+void watchdog_feed(void) {
+    g_watchdog.count = 0;
+    printf("Feeding the dog is successful and the counter resets\n");
+}
 
-        // 这里可以根据实际情况，偶尔不喂狗，模拟系统异常
-        // 比如每10次循环，有1次不喂狗
-        static int count = 0;
-        count++;
-        if(count % 10 == 0)
-        {
-            // 不喂狗，模拟系统异常
-            vTaskDelay(pdMS_TO_TICKS(2000)); 
+// 模拟定时器中断（每隔1ms调用一次，实际由硬件定时器触发）
+void timer_tick(void) {
+    g_watchdog.count++;
+    if (g_watchdog.count >= g_watchdog.timeout) {
+        // 超时：调用回调函数处理
+        g_watchdog.callback();
+    }
+}
+
+int main() {
+    // 初始化看门狗，超时时间设为1000ms（1秒）
+    watchdog_init(1000);
+    
+    // 模拟正常运行（前5次按时喂狗）
+    for (int i = 0; i < 5; i++) {
+        // 模拟程序执行（500ms）
+        for (int j = 0; j < 500; j++) {
+            timer_tick(); // 模拟1ms计时
         }
+        watchdog_feed(); // 喂狗
     }
-}
-
-int main(void)
-{
-    // 创建软件看门狗定时器
-    xWatchdogTimer = xTimerCreate(
-                        "WatchdogTimer",      // 定时器名字
-                        pdMS_TO_TICKS(1500),  // 定时周期，1500毫秒
-                        pdFALSE,              // 一次性定时器，超时后不自动重启
-                        NULL,                 // 没有传递给回调函数的参数
-                        vWatchdogTimerCallback// 回调函数
-                    );
-
-    if(xWatchdogTimer != NULL)
-    {
-        // 启动软件看门狗定时器
-        xTimerStart(xWatchdogTimer, 0); 
-
-        // 创建应用任务
-        xTaskCreate(
-                        vApplicationTask,     // 任务函数
-                        "AppTask",            // 任务名字
-                        configMINIMAL_STACK_SIZE, // 任务堆栈大小
-                        NULL,                 // 没有传递给任务函数的参数
-                        tskIDLE_PRIORITY + 1, // 任务优先级
-                        NULL                  // 任务句柄
-                    );
-
-        // 启动FreeRTOS调度器
-        vTaskStartScheduler(); 
+    
+    // 模拟异常：第6次不喂狗，导致超时
+    printf("===== Simulation program abnormalities, stop feeding the dog =====\n");
+    while (1) {
+        timer_tick(); // 继续计时，直至超时
     }
-
-    // 如果程序执行到这里，说明调度器启动失败
-    while(1); 
+    
+    return 0;
 }
