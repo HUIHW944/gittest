@@ -3,25 +3,22 @@
 
 #define MAX_SIZE 5  // 定义队列的最大容量
 
-// 定义队列结构体
+/* queue is FIFO */
 typedef struct {
     int data[MAX_SIZE];  // 用于存储队列元素的数组
     int front;  // 队头指针，指向队头元素
     int rear;  // 队尾指针，指向队尾元素的下一个位置
 } Queue;
 
-// 初始化队列
 void initQueue(Queue *q) {
     q->front = 0;
     q->rear = 0;
 }
 
-// 判断队列是否已满
 int isFull(Queue *q) {
     return (q->rear + 1) % MAX_SIZE == q->front;
 }
 
-// 判断队列是否为空
 int isEmpty(Queue *q) {
     return q->front == q->rear;
 }
@@ -40,7 +37,7 @@ void enqueue(Queue *q, int value) {
 int dequeue(Queue *q) {
     if (isEmpty(q)) {
         printf("队列已空，无法出队\n");
-        return -1;  // 返回一个特殊值表示错误，实际应用中可根据需求调整
+        return -1; 
     }
     int result = q->data[q->front];
     q->front = (q->front + 1) % MAX_SIZE;
@@ -51,7 +48,7 @@ int dequeue(Queue *q) {
 int front(Queue *q) {
     if (isEmpty(q)) {
         printf("队列已空，无队头元素\n");
-        return -1;  // 返回一个特殊值表示错误，实际应用中可根据需求调整
+        return -1;  
     }
     return q->data[q->front];
 }
@@ -64,10 +61,11 @@ int main() {
     enqueue(&q, 20);
     enqueue(&q, 30);
 
-    printf("队头元素: %d\n", front(&q));
+    printf("the first: %d\n", front(&q));
+    printf("the second: %d\n", front(&q+1));
 
     int dequeued = dequeue(&q);
-    printf("出队元素: %d\n", dequeued);
+    printf("dequeue: %d\n", dequeued);
 
     return 0;
 }
