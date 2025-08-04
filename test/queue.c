@@ -26,7 +26,7 @@ int isEmpty(Queue *q) {
 // 入队操作
 void enqueue(Queue *q, int value) {
     if (isFull(q)) {
-        printf("队列已满，无法入队\n");
+        printf("queue is full, no enqueue\n");
         return;
     }
     q->data[q->rear] = value;
@@ -36,7 +36,7 @@ void enqueue(Queue *q, int value) {
 // 出队操作
 int dequeue(Queue *q) {
     if (isEmpty(q)) {
-        printf("队列已空，无法出队\n");
+        printf("queue is empty,no dequeue\n");
         return -1; 
     }
     int result = q->data[q->front];
@@ -47,7 +47,7 @@ int dequeue(Queue *q) {
 // 获取队头元素
 int front(Queue *q) {
     if (isEmpty(q)) {
-        printf("队列已空，无队头元素\n");
+        printf("queue is empty\n");
         return -1;  
     }
     return q->data[q->front];
@@ -62,10 +62,8 @@ int main() {
     enqueue(&q, 30);
 
     printf("the first: %d\n", front(&q));
-    printf("the second: %d\n", front(&q+1));
-
-    int dequeued = dequeue(&q);
-    printf("dequeue: %d\n", dequeued);
+    /* printf("the second: %d\n", front(&q+1)); */
+    printf("dequeue: %d\n", dequeue(&q));
 
     return 0;
 }
