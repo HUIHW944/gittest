@@ -1,2 +1,5 @@
 test git rebase
 test git merge --squash
+
+test git add -p 
+/* 交互式暂存文件的部分修改 */
