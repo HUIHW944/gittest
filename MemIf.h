@@ -9,4 +9,6 @@ typedef enum
     MEMIF_BUSY_INTERNAL
 } MemIf_StatusType;
 
+MemIf_StatusType MemIf_GetStatus(void);
+
 #endif /* MEMIF_H */ 
