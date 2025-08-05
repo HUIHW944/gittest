@@ -12,13 +12,15 @@ typedef struct {
 SoftWatchdog g_watchdog;
 
 // 模拟系统复位函数
-void system_reset(void) {
+void system_reset(void) 
+{
     printf("[System reset] try to get back to normal operation...\n");
     // 实际硬件中会调用复位指令，如NVIC_SystemReset()
 }
 
 // 看门狗超时回调函数
-void watchdog_timeout_callback(void) {
+void watchdog_timeout_callback(void) 
+{
     printf("[Timeout Exception] did not feed the dog in time!\n");
     
     // 1. 记录故障信息（示例：打印当前状态）
@@ -32,7 +34,8 @@ void watchdog_timeout_callback(void) {
 }
 
 // 初始化软件看门狗
-void watchdog_init(uint32_t timeout) {
+void watchdog_init(uint32_t timeout) 
+{
     g_watchdog.timeout = timeout;
     g_watchdog.callback = watchdog_timeout_callback; // 绑定回调函数
     g_watchdog.count = 0;
@@ -40,13 +43,15 @@ void watchdog_init(uint32_t timeout) {
 }
 
 // 喂狗操作（重置计数器）
-void watchdog_feed(void) {
+void watchdog_feed(void) 
+{
     g_watchdog.count = 0;
     printf("Feeding the dog is successful and the counter resets\n");
 }
 
 // 模拟定时器中断（每隔1ms调用一次，实际由硬件定时器触发）
-void timer_tick(void) {
+void timer_tick(void) 
+{
     g_watchdog.count++;
     if (g_watchdog.count >= g_watchdog.timeout) {
         // 超时：调用回调函数处理
@@ -54,7 +59,8 @@ void timer_tick(void) {
     }
 }
 
-int main() {
+int main() 
+{
     // 初始化看门狗，超时时间设为1000ms（1秒）
     watchdog_init(1000);
     

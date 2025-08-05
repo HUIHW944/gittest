@@ -1,8 +1,7 @@
 #ifndef MEMIF_H
 #define MEMIF_H
 
-typedef enum
-{
+typedef enum {
     MEMIF_UNINIT = 0x00,
     MEMIF_IDLE,
     MEMIF_BUSY,

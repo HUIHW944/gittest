@@ -10,21 +10,25 @@ typedef struct {
     int rear;  // 队尾指针，指向队尾元素的下一个位置
 } Queue;
 
-void initQueue(Queue *q) {
+void initQueue(Queue *q) 
+{
     q->front = 0;
     q->rear = 0;
 }
 
-int isFull(Queue *q) {
+int isFull(Queue *q) 
+{
     return (q->rear + 1) % MAX_SIZE == q->front;
 }
 
-int isEmpty(Queue *q) {
+int isEmpty(Queue *q) 
+{
     return q->front == q->rear;
 }
 
 // 入队操作
-void enqueue(Queue *q, int value) {
+void enqueue(Queue *q, int value) 
+{
     if (isFull(q)) {
         printf("queue is full, no enqueue\n");
         return;
@@ -34,7 +38,8 @@ void enqueue(Queue *q, int value) {
 }
 
 // 出队操作
-int dequeue(Queue *q) {
+int dequeue(Queue *q) 
+{
     if (isEmpty(q)) {
         printf("queue is empty,no dequeue\n");
         return -1; 
@@ -45,7 +50,8 @@ int dequeue(Queue *q) {
 }
 
 // 获取队头元素
-int front(Queue *q) {
+int front(Queue *q) 
+{
     if (isEmpty(q)) {
         printf("queue is empty\n");
         return -1;  
@@ -53,7 +59,8 @@ int front(Queue *q) {
     return q->data[q->front];
 }
 
-int main() {
+int main() 
+{
     Queue q;
     initQueue(&q);
 

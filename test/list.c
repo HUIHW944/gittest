@@ -8,7 +8,8 @@ struct Node {
     struct Node* next;  // 指向下一个节点的指针
 };
 
-struct Node* createNode(int data) {
+struct Node* createNode(int data) 
+{
     struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
     if (newNode == NULL) {
         printf("内存分配失败！\n");
@@ -19,13 +20,15 @@ struct Node* createNode(int data) {
     return newNode;
 }
 
-struct Node* insertAtHead(struct Node* head, int data) {
+struct Node* insertAtHead(struct Node* head, int data) 
+{
     struct Node* newNode = createNode(data);
     newNode->next = head;  // 新节点指向原头节点
     return newNode;        // 返回新的头节点
 }
 
-struct Node* insertAtTail(struct Node* head, int data) {
+struct Node* insertAtTail(struct Node* head, int data) 
+{
     struct Node* newNode = createNode(data);
     if (head == NULL) 
     return newNode;  // 空链表直接返回新节点
@@ -38,7 +41,8 @@ struct Node* insertAtTail(struct Node* head, int data) {
     return head;
 }
 
-struct Node* deleteNode(struct Node* head, int key) {
+struct Node* deleteNode(struct Node* head, int key) 
+{
     struct Node* temp = head;
     struct Node* prev = NULL;
     // 找到要删除的节点
@@ -56,7 +60,8 @@ struct Node* deleteNode(struct Node* head, int key) {
     return head;
 }
 
-void printList(struct Node* head) {
+void printList(struct Node* head) 
+{
     struct Node* temp = head;
     while (temp != NULL) {
         printf("%d -> ", temp->data);
@@ -65,7 +70,8 @@ void printList(struct Node* head) {
     printf("NULL\n");
 }
 
-void freeList(struct Node* head) {
+void freeList(struct Node* head) 
+{
     struct Node* temp;
     while (head != NULL) {
         temp = head;
@@ -74,7 +80,8 @@ void freeList(struct Node* head) {
     }
 }
 
-int main() {
+int main() 
+{
     struct Node* head = NULL;  
     // 插入节点
     head = insertAtHead(head, 10);    // 10 -> NULL

@@ -30,6 +30,5 @@ int main(void)
             printf("unknown state\n");
             break;
     }
-
     return 0;
 }
