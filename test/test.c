@@ -409,23 +409,15 @@ int main(void)
    myshow("====\n");
    printf("the myshow is %p\n",myshow);
    return 0;
-} */ 
+} */
 
-int add(int a, int b) 
-{ 
-   return a + b; 
+int add(int a, int b) { return a + b; }
+int sub(int a, int b) { return a - b; }
+void process(int (*func)(int, int), int a, int b) {
+  int result = func(a, b);
+  printf("Result: %d\n", result);
 }
-int sub(int a, int b) 
-{ 
-   return a - b; 
-}
-void process(int (*func)(int, int), int a, int b) 
-{
-   int result = func(a, b);  
-   printf("Result: %d\n", result);
-}
-int main(void) 
-{
-   process(add, 3, 4);
-   process(sub, 3, 4);
+int main(void) {
+  process(add, 3, 4);
+  process(sub, 3, 4);
 }
