@@ -391,7 +391,7 @@ int sub(int a, int b) {
 void process(int (*func)(int, int), int a, int b) {
    int result = func(a, b);  
    printf("Result: %d\n", result);
-   }
+}
 int main(void) {
    process(add, 3, 4);
    process(sub, 3, 4);
