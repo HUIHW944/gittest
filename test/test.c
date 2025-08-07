@@ -1,9 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "Platform_Types.h"
 
-typedef unsigned long uint32;
-typedef unsigned int uint16;
 /*
 int main(void) 
 {
@@ -429,12 +428,11 @@ int main(void)
 
 int main(void)
 {
-    /* 无符号整数示例：效果完全一致 */
-    uint16 a = 100;
+    sint16 a = 100;
     uint16 b = 100;
 
-    a = a >> 1;   /* 右移一位 */
-    b = b / 2;    /* 除以 2   */
+    a = a >> 1;   /* move one place to right, except negative number */
+    b = b / 2;    /* divide 2 */
 
     printf("a = %u, b = %u\n", a, b);   /* %u=unsigned decimal */
 
