@@ -61,6 +61,10 @@
     "*.cla": "c",
     "*.stl": "plantuml",
     "*.lsl": "linkerscript",
-    "platform_types.h": "c"
+    "platform_types.h": "c",
+    "chrono": "c",
+    "text_encoding": "c",
+    "typeindex": "c",
+    "typeinfo": "c"
 }
 }
