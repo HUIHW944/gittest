@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
+typedef unsigned long uint32;
+typedef unsigned int uint16;
 /*
 int main(void) 
 {
@@ -411,13 +414,29 @@ int main(void)
    return 0;
 } */
 
-int add(int a, int b) { return a + b; }
-int sub(int a, int b) { return a - b; }
-void process(int (*func)(int, int), int a, int b) {
-  int result = func(a, b);
-  printf("Result: %d\n", result);
-}
-int main(void) {
-  process(add, 3, 4);
-  process(sub, 3, 4);
+/*
+   int add(int a, int b) { return a + b; }
+   int sub(int a, int b) { return a - b; }
+   void process(int (*func)(int, int), int a, int b) {
+   int result = func(a, b);
+   printf("Result: %d\n", result);
+   }
+   int main(void) {
+   process(add, 3, 4);
+   process(sub, 3, 4);
+   }
+   */
+
+int main(void)
+{
+    /* 无符号整数示例：效果完全一致 */
+    uint16 a = 100;
+    uint16 b = 100;
+
+    a = a >> 1;   /* 右移一位 */
+    b = b / 2;    /* 除以 2   */
+
+    printf("a = %u, b = %u\n", a, b);   /* %u=unsigned decimal */
+
+    return 0;
 }
