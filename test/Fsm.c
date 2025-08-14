@@ -1,14 +1,11 @@
-// 1. 包含必要的头文件和枚举定义
 #include <stdint.h>
 #include <stdbool.h>
 
-// 你的枚举定义（控制 HCU 使能/禁用）
 typedef enum {
     HcuStctrlReq_Disable = 0,
     HcuStctrlReq_Enable
 } DcdcStaCtrlWrap_TEHcuStCtrlReq;
 
-// 2. 定义状态机的状态枚举
 typedef enum {
     STATE_INIT = 0,      // 初始化
     STATE_STANDBY,       // 待机（使能但未工作）
