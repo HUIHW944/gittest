@@ -413,28 +413,40 @@ int main(void)
    return 0;
 } */
 
-/*
-   int add(int a, int b) { return a + b; }
-   int sub(int a, int b) { return a - b; }
-   void process(int (*func)(int, int), int a, int b) {
-   int result = func(a, b);
-   printf("Result: %d\n", result);
-   }
-   int main(void) {
-   process(add, 3, 4);
-   process(sub, 3, 4);
-   }
-   */
+// int add(int a, int b) { 
+//     return a + b; 
+// }
+// int sub(int a, int b) {
+//     return a - b; 
+// }
+// void process(int (*func)(int, int), int a, int b) {
+//   int result = func(a, b);
+//   printf("Result: %d\n", result);
+// }
+// int main(void) {
+//   process(add, 3, 4);
+//   process(sub, 3, 4);
+// }
+
+// int main(void)
+// {
+//     sint16 a = 100;
+//     uint16 b = 100;
+
+//     a = a >> 1;   /* move one place to right, except negative number */
+//     b = b / 2;    /* divide 2 */
+
+//     printf("a = %u, b = %u\n", a, b);   /* %u=unsigned decimal */
+
+//     return 0;
+// }
 
 int main(void)
 {
-    sint16 a = 100;
-    uint16 b = 100;
+int a = 10;   // 定义变量 a，值为 10
+int *p;       // 定义指针 p，存地址
 
-    a = a >> 1;   /* move one place to right, except negative number */
-    b = b / 2;    /* divide 2 */
-
-    printf("a = %u, b = %u\n", a, b);   /* %u=unsigned decimal */
-
-    return 0;
+p = &a;       //p 存储 a 的地址（p 指向 a）
+*p = 20;      //通过 p 把 a 的值改为 20（a 现在是 20）
+int b = *p;   //b 等于 p 指向的值（b = 20）
 }
