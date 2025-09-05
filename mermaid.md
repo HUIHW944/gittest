@@ -101,10 +101,11 @@ radar-beta
 treemap-beta
 "Products"
     "Electronics"
-        "Phones": 50
+        "Phones": 50:::class1
         "Computers": 30
         "Accessories": 20
     "Clothing"
         "Men's": 40
         "Women's": 40
+classDef class1 fill:red,color:blue,stroke:#DDF600;
 ```
