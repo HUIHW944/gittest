@@ -1,21 +1,12 @@
 // UCB0: 0xAF000000 ~ 0xAF000FFF (4KB)
 // UCB1: 0xAF001000 ~ 0xAF001FFF (4KB)
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include "Platform_Types.h"
+#include "UCB.h"
 
 #define FLASH_BASE      0xF0000000
 #define UCB_CMD_REG     (*(volatile uint32*)(FLASH_BASE + 0x100))
 #define UCB_ADDR_REG    (*(volatile uint32*)(FLASH_BASE + 0x104))
 #define UCB_STATUS_REG  (*(volatile uint32*)(FLASH_BASE + 0x108))
 
-typedef enum {
-    FLASH_OK = 0,
-    FLASH_ERROR_TIMEOUT,
-    FLASH_ERROR_OPERATION,
-    FLASH_ERROR_VERIFY
-} Flash_ErrorType;
 
 Flash_ErrorType eraseUCBSector(uint32 ucb_address) {
     uint32 timeout_counter = 0;
