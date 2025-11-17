@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "d:/myprojects/Git",
-      "program": "d:/myprojects/Git/build/Debug/outDebug",
+      "cwd": "d:/myprojects/gittest",
+      "program": "d:/myprojects/gittest/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
