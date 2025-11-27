@@ -23,6 +23,7 @@
   | 左对齐 | 居中对齐 | 右对齐 |
   | :---- | :----: | ----: |
   | a | b | c |
+  | ^ | 与上一行合并 |
 ## 5. **段落**
   - 换行？ —— 两个以上空格后回车/空一行  
   - 分割线 —— 三个*
@@ -49,7 +50,7 @@
 - 查看更多使用功能请[点击链接][教程]
 - [教程]:https://www.runoob.com/markdown/md-link.html
 ## 8. **图片**  
-(复杂)
+ctrl+alt+v  可以直接复制剪贴板里的图片  图片存在目录之下 （通过picgo插件实现）
 ## 9. **其他操作**
 - 行内插入公式
   $f(x)=ax+b$
@@ -62,3 +63,11 @@
   $$
 ## 10. **目录**
 [toc]
+## 11. **字体颜色**
+<font color=red>红色</font>
+<font color=blue>蓝色</font>
+<font color=green>绿色</font>
+<font color=orange>橙色</font>
+<font color=purple>紫色</font>
+<font color=gray>灰色</font>
+<font color=black>黑色</font>
