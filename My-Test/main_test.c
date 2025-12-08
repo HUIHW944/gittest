@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "Platform_Types.h"
+#include "../Platform_Types.h"
 
 /*
 int main(void) 
@@ -193,25 +193,12 @@ int main()
 }
  */
 
-/*
-int global_inited = 10;//全局初始化变量    
-int global_uninited;// 全局未初始化变量   
-static int static_global_inited = 10;// 静态全局初始化变量   
-static int static_global_uninited;// 静态全局未初始化变量   
-int main(void) 
-{
-   int local_var = 20;  //局部变量 
-   char *str = "Hello"; //字符串变量
-   static int static_local_inited = 30; //静态局部c初始化量
-   static int static_local_uninited;//静态局部未初始化变量
-   int *heap_var = (int *)malloc(sizeof(int)); //动态分配内存
-}
-*/
-/*
-int global_inited = 10;// 全局初始化变量->data段  
-int global_uninited;//全局未初始化变量->bss段
-static int static_global_inited = 10;// 静态全局初始化变量->data段   
-static int static_global_uninited;// 静态全局未初始化变量->bss段   
+int global_inited = 10;// 全局初始化变量->.data段  
+int global_uninited;//全局未初始化变量->.bss段
+static int static_global_inited = 10;// 静态全局初始化变量->.data段   
+static int static_global_uninited;// 静态全局未初始化变量->.bss段   
+const int global_const;//只读数据段->.rodata
+static const int static_global_const = 10;//只读数据段->.rodata
 int main(void) 
 {
     int local_var = 20;  //局部变量->栈区
@@ -219,8 +206,10 @@ int main(void)
     static int static_local_inited = 30; //静态局部c初始化量->data段
     static int static_local_uninited;//静态局部未初始化变量->bss段
     int *heap_var = (int *)malloc(sizeof(int)); //动态分配内存->堆区
+    const int local_const = 40;//局部常量->栈区
+    static const int static_local_const = 50;//静态局部常量->只读数据段
 
-    printf("address of code:                       %p\n", main);//代码段（只读）
+    printf("address of code:                       %p\n", main);//代码段（只读）->.text
     printf("address of str:                        %p\n", str);//只读数据段
 
     printf("address of global_inited:              %p\n", (void *)&global_inited);//全局数据初始化段（DATA）
@@ -229,13 +218,16 @@ int main(void)
     printf("address of global_uninited:            %p\n", (void *)&global_uninited);//全局数据未初始化段（BSS）
     printf("address of static_global_uninited:     %p\n", (void *)&static_global_uninited);//BSS
     printf("address of static_local_uninited:      %p\n", (void *)&static_local_uninited);//BSS
+    printf("address of global_const:               %p\n", (void *)&global_const);//只读数据段->.rodata
+    printf("address of static_global_const:        %p\n", (void *)&static_global_const);//只读数据段->.rodata
+    printf("address of local_const:                %p\n", (void *)&local_const);//栈区
+    printf("address of static_local_const:         %p\n", (void *)&static_local_const);//只读数据段->.rodata
 
     printf("address of heap_var:                   %p\n", (void *)heap_var);//堆空间，往上生长
     printf("address of local_var:                  %p\n", (void *)&local_var);//栈空间，往下生长
     free(heap_var); //释放动态分配的内存
     return 0;
 }
-   */
 
 /* int main () 
 {
@@ -435,6 +427,7 @@ int main(void)
 //     return 0;
 // }
 
+/*
 int main(void)
 {
 int a = 10;   // 定义变量 a，值为 10
@@ -444,3 +437,4 @@ p = &a;       //p 存储 a 的地址（p 指向 a）
 *p = 20;      //通过 p 把 a 的值改为 20（a 现在是 20）
 int b = *p;   //b 等于 p 指向的值（b = 20）
 }
+*/
